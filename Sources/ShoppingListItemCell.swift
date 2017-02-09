@@ -13,12 +13,13 @@ class ShoppingListItemCell: UITableViewCell {
 	private func updateViews() {
 		guard let item = shoppingListItem else {
 			nameLabel.text = ""
-			completionCheckbox.image = #imageLiteral(resourceName: "incomplete")
+			completionCheckbox.setImage(#imageLiteral(resourceName: "incomplete"), for: .normal)
 			return
 		}
 		
 		nameLabel.text = item.name
-		completionCheckbox.image = item.complete ? #imageLiteral(resourceName: "complete") : #imageLiteral(resourceName: "incomplete")
+		let image = item.complete ? #imageLiteral(resourceName: "complete") : #imageLiteral(resourceName: "incomplete")
+		completionCheckbox.setImage(image, for: .normal)
 	}
 
 	var shoppingListItem: ShoppingListItem? {
@@ -28,5 +29,5 @@ class ShoppingListItemCell: UITableViewCell {
 	}
 	
 	@IBOutlet var nameLabel: UILabel!
-	@IBOutlet var completionCheckbox: UIImageView!
+	@IBOutlet var completionCheckbox: UIButton!
 }

@@ -14,5 +14,6 @@ extension ShoppingListItem {
 		self.init(context: context)
 		
 		self.name = name
+		self.creationDate = NSDate()
 	}
 }

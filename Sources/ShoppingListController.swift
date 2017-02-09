@@ -29,31 +29,30 @@ class ShoppingListController {
 	
 	@discardableResult func createShoppingListItem(name: String) -> ShoppingListItem {
 		let item = ShoppingListItem(context: container.viewContext, name: name)
-		saveManagedObjectContext()
+		save()
 		return item
 	}
 	
 	func delete(shoppingListItem: ShoppingListItem) {
 		container.viewContext.delete(shoppingListItem)
-		saveManagedObjectContext()
+		save()
 	}
 	
-	// MARK: Actions
-
-	// MARK: Private Methods
-	
-	private func saveManagedObjectContext() {
+	func save() {
 		do {
 			try container.viewContext.save()
 		} catch {
 			NSLog("Error saving managed object context: \(error)")
 		}
 	}
+
+	// MARK: Private Methods
 	
 	// MARK: Public Properties
 	
 	var shoppingListItems: [ShoppingListItem] {
 		let fetchRequest: NSFetchRequest<ShoppingListItem> = ShoppingListItem.fetchRequest()
+		fetchRequest.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
 		var result = [ShoppingListItem]()
 		container.viewContext.performAndWait {
 			do {

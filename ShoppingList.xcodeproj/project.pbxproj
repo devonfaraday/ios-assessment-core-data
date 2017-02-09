@@ -156,6 +156,7 @@
 				TargetAttributes = {
 					1A4A23181CCA8D2C003A4350 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 357NQPN89X;
 						LastSwiftMigration = 0820;
 					};
 				};
@@ -319,7 +320,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 357NQPN89X;
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.devmountain.ShoppingList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -331,7 +334,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 357NQPN89X;
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.devmountain.ShoppingList;
 				PRODUCT_NAME = "$(TARGET_NAME)";

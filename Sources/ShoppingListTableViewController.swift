@@ -45,6 +45,17 @@ class ShoppingListTableViewController: UITableViewController {
 		present(alertController, animated: true, completion: nil)
 	}
 	
+	@IBAction func completionCheckboxTapped(_ sender: UIButton) {
+		guard let point = sender.superview?.convert(sender.center, to: tableView),
+			let indexPath = tableView.indexPathForRow(at: point) else {
+			return
+		}
+		let controller = ShoppingListController.shared
+		let item = controller.shoppingListItems[indexPath.row]
+		item.complete = !item.complete
+		controller.save()
+		tableView.reloadRows(at: [indexPath], with: .automatic)
+	}
 	// MARK: UITableViewDataSource/Delegate
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
