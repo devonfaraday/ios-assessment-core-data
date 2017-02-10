@@ -10,28 +10,39 @@ import UIKit
 
 class ShoppingListTableViewController: UITableViewController, ShoppingListTableViewCellDelegate {
     
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        guard let section = ItemController.shared.fetchRequestController.sections else {
+            return 0
+        }
+        return section.count
+    }
+    
     // Setting number of Rows
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ItemController.shared.items.count
+        guard let sections = ItemController.shared.fetchRequestController.sections else { return 0}
+        let sectionInfo = sections[section]
+        return sectionInfo.numberOfObjects
     }
+    
     
     // Configuring the cell to pull info from my custom cell file
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "shoppingListCell", for: indexPath) as? ShoppingListTableViewCell else { return ShoppingListTableViewCell() }
-        let item = ItemController.shared.items[indexPath.row]
+       let item = ItemController.shared.fetchRequestController.object(at: indexPath)
         
         cell.item = item
         cell.delegate = self
         
-        
+             
         return cell
     }
     
     // Deleting items from list
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let item = ItemController.shared.items[indexPath.row]
-            ItemController.shared.delete(item: item)
+            //let item = ItemController.shared.items[indexPath.row]
+           // ItemController.shared.delete(item: item)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
