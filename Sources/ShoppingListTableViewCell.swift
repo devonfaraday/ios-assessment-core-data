@@ -30,6 +30,7 @@ class ShoppingListTableViewCell: UITableViewCell {
         itemLabel.text = item.name
         let images = item.hasPurchased ? #imageLiteral(resourceName: "complete") : #imageLiteral(resourceName: "incomplete")
         hasPurchasedButton.setImage(images, for: .normal)
+        
     }
 }
 
