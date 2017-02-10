@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ShoppingListTableViewController: UITableViewController {
+class ShoppingListTableViewController: UITableViewController, ShoppingListItemCellDelegate {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -45,17 +45,7 @@ class ShoppingListTableViewController: UITableViewController {
 		present(alertController, animated: true, completion: nil)
 	}
 	
-	@IBAction func completionCheckboxTapped(_ sender: UIButton) {
-		guard let point = sender.superview?.convert(sender.center, to: tableView),
-			let indexPath = tableView.indexPathForRow(at: point) else {
-			return
-		}
-		let controller = ShoppingListController.shared
-		let item = controller.shoppingListItems[indexPath.row]
-		item.complete = !item.complete
-		controller.save()
-		tableView.reloadRows(at: [indexPath], with: .automatic)
-	}
+
 	// MARK: UITableViewDataSource/Delegate
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -69,7 +59,7 @@ class ShoppingListTableViewController: UITableViewController {
 		}
 		
 		cell.shoppingListItem = ShoppingListController.shared.shoppingListItems[indexPath.row]
-		
+		cell.delegate = self
 		return cell
 	}
 	
@@ -81,5 +71,12 @@ class ShoppingListTableViewController: UITableViewController {
 			controller.delete(shoppingListItem: item)
 			tableView.deleteRows(at: [indexPath], with: .fade)
 		}
+	}
+	
+	func shoppingListItemCompletionCheckboxTapped(item: ShoppingListItem) {
+		let controller = ShoppingListController.shared
+		item.complete = !item.complete
+		controller.save()
+		tableView.reloadData()
 	}
 }

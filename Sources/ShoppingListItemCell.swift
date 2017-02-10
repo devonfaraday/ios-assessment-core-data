@@ -8,7 +8,16 @@
 
 import UIKit
 
+protocol ShoppingListItemCellDelegate: class {
+	func shoppingListItemCompletionCheckboxTapped(item: ShoppingListItem)
+}
+
 class ShoppingListItemCell: UITableViewCell {
+	
+	@IBAction func completionCheckboxTapped(_ sender: UIButton) {
+		guard let item = shoppingListItem else { return }
+		delegate?.shoppingListItemCompletionCheckboxTapped(item: item)
+	}
 
 	private func updateViews() {
 		guard let item = shoppingListItem else {
@@ -28,6 +37,7 @@ class ShoppingListItemCell: UITableViewCell {
 		}
 	}
 	
+	weak var delegate: ShoppingListItemCellDelegate?
 	@IBOutlet var nameLabel: UILabel!
 	@IBOutlet var completionCheckbox: UIButton!
 }
