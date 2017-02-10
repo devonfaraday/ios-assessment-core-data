@@ -2,81 +2,67 @@
 //  ShoppingListTableViewController.swift
 //  ShoppingList
 //
-//  Created by Andrew Madsen on 2/9/17.
+//  Created by Christian McMullin on 2/10/17.
 //  Copyright © 2017 DevMountain. All rights reserved.
 //
 
 import UIKit
 
-class ShoppingListTableViewController: UITableViewController, ShoppingListItemCellDelegate {
-	
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		
-		// Uncomment the following line to preserve selection between presentations
-		// self.clearsSelectionOnViewWillAppear = false
-		
-		// Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-		// self.navigationItem.rightBarButtonItem = self.editButtonItem()
-	}
-	
-	@IBAction func addNewItem(_ sender: Any) {
-		let alertController = UIAlertController(title: "Add Item", message: "Please add an item to your shopping list", preferredStyle: .alert)
-		
-		var textField: UITextField!
-		alertController.addTextField { (newTextField) in
-			textField = newTextField
-		}
-		
-		let addAction = UIAlertAction(title: "Add", style: .default) { (action) in
-			if let name = textField.text {
-				ShoppingListController.shared.createShoppingListItem(name: name)
-				self.tableView.reloadData()
-			}
-			alertController.dismiss(animated: true, completion: nil)
-		}
-		alertController.addAction(addAction)
-		
-		let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { __SRD in
-			alertController.dismiss(animated: true, completion: nil)
-		}
-		alertController.addAction(cancelAction)
-		
-		present(alertController, animated: true, completion: nil)
-	}
-	
-
-	// MARK: UITableViewDataSource/Delegate
-	
-	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return ShoppingListController.shared.shoppingListItems.count
-	}
-	
-	
-	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		guard let cell = tableView.dequeueReusableCell(withIdentifier: "ShoppingListItemCell", for: indexPath) as? ShoppingListItemCell else {
-			return ShoppingListItemCell()
-		}
-		
-		cell.shoppingListItem = ShoppingListController.shared.shoppingListItems[indexPath.row]
-		cell.delegate = self
-		return cell
-	}
-	
-	// Override to support editing the table view.
-	override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-		if editingStyle == .delete {
-			let controller = ShoppingListController.shared
-			let item = controller.shoppingListItems[indexPath.row]
-			controller.delete(shoppingListItem: item)
-			tableView.deleteRows(at: [indexPath], with: .fade)
-		}
-	}
-	
-	func shoppingListItemCompletionCheckboxTapped(item: ShoppingListItem) {
-		let controller = ShoppingListController.shared
-		item.complete = !item.complete
-		controller.save()
-		tableView.reloadData()
-	}
+class ShoppingListTableViewController: UITableViewController, ShoppingListTableViewCellDelegate {
+   
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return ItemController.shared.items.count
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "shoppingListCell", for: indexPath) as? ShoppingListTableViewCell else { return ShoppingListTableViewCell() }
+        let item = ItemController.shared.items[indexPath.row]
+        
+        cell.item = item
+        cell.delegate = self
+        
+        
+        return cell
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let item = ItemController.shared.items[indexPath.row] 
+            ItemController.shared.delete(item: item)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+    
+    func buttonCellButtonTapped(_ sender: ShoppingListTableViewCell) {
+        guard let indexPath = tableView.indexPath(for: sender),
+            let item = sender.item else { return }
+        ItemController.shared.hasPurchagedToggled(item: item)
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+    }
+    
+    @IBAction func addButtonTapped(_ sender: Any) {
+        let actionController = UIAlertController(title: "Add Item", message: "Enter Item to purchase", preferredStyle: .alert)
+        var itemNameTextField: UITextField?
+        actionController.addTextField { (textField) in
+            itemNameTextField = textField
+        }
+        let addActionTapped = UIAlertAction(title: "Add", style: .default) { (_) in
+            guard let itemName = itemNameTextField?.text else { return }
+            ItemController.shared.addItemWith(name: itemName)
+            self.tableView.reloadData()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        actionController.addAction(addActionTapped)
+        actionController.addAction(cancelAction)
+        
+        present(actionController, animated: true, completion: nil)
+        
+    }
+    
+    
+    
 }
