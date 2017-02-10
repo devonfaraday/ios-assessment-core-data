@@ -13,7 +13,7 @@
 		9DF138431E4CDE8C00AF0400 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF1383E1E4CDE8C00AF0400 /* AppDelegate.swift */; };
 		FDDB12931E4E1BC700AA2D6A /* ShoppingListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDB12921E4E1BC700AA2D6A /* ShoppingListTableViewCell.swift */; };
 		FDDB12951E4E1BD400AA2D6A /* ShoppingListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDB12941E4E1BD400AA2D6A /* ShoppingListTableViewController.swift */; };
-		FDDB12981E4E1CF000AA2D6A /* Item.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FDDB12961E4E1CF000AA2D6A /* Item.xcdatamodeld */; };
+		FDDB12981E4E1CF000AA2D6A /* ShoppingList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FDDB12961E4E1CF000AA2D6A /* ShoppingList.xcdatamodeld */; };
 		FDDB129A1E4E1D1D00AA2D6A /* Item+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDB12991E4E1D1D00AA2D6A /* Item+Convenience.swift */; };
 		FDDB129C1E4E1D3200AA2D6A /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDB129B1E4E1D3200AA2D6A /* CoreDataStack.swift */; };
 		FDDB129E1E4E1DA200AA2D6A /* ItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDB129D1E4E1DA200AA2D6A /* ItemController.swift */; };
@@ -28,7 +28,7 @@
 		9DF1383E1E4CDE8C00AF0400 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FDDB12921E4E1BC700AA2D6A /* ShoppingListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingListTableViewCell.swift; sourceTree = "<group>"; };
 		FDDB12941E4E1BD400AA2D6A /* ShoppingListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingListTableViewController.swift; sourceTree = "<group>"; };
-		FDDB12971E4E1CF000AA2D6A /* Item.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Item.xcdatamodel; sourceTree = "<group>"; };
+		FDDB12971E4E1CF000AA2D6A /* ShoppingList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ShoppingList.xcdatamodel; sourceTree = "<group>"; };
 		FDDB12991E4E1D1D00AA2D6A /* Item+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Item+Convenience.swift"; sourceTree = "<group>"; };
 		FDDB129B1E4E1D3200AA2D6A /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		FDDB129D1E4E1DA200AA2D6A /* ItemController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemController.swift; sourceTree = "<group>"; };
@@ -95,7 +95,7 @@
 		FDDB128F1E4E1B6A00AA2D6A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				FDDB12961E4E1CF000AA2D6A /* Item.xcdatamodeld */,
+				FDDB12961E4E1CF000AA2D6A /* ShoppingList.xcdatamodeld */,
 				FDDB12991E4E1D1D00AA2D6A /* Item+Convenience.swift */,
 				FDDB129B1E4E1D3200AA2D6A /* CoreDataStack.swift */,
 			);
@@ -193,7 +193,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FDDB129E1E4E1DA200AA2D6A /* ItemController.swift in Sources */,
-				FDDB12981E4E1CF000AA2D6A /* Item.xcdatamodeld in Sources */,
+				FDDB12981E4E1CF000AA2D6A /* ShoppingList.xcdatamodeld in Sources */,
 				FDDB129A1E4E1D1D00AA2D6A /* Item+Convenience.swift in Sources */,
 				9DF138431E4CDE8C00AF0400 /* AppDelegate.swift in Sources */,
 				FDDB129C1E4E1D3200AA2D6A /* CoreDataStack.swift in Sources */,
@@ -364,13 +364,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		FDDB12961E4E1CF000AA2D6A /* Item.xcdatamodeld */ = {
+		FDDB12961E4E1CF000AA2D6A /* ShoppingList.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				FDDB12971E4E1CF000AA2D6A /* Item.xcdatamodel */,
+				FDDB12971E4E1CF000AA2D6A /* ShoppingList.xcdatamodel */,
 			);
-			currentVersion = FDDB12971E4E1CF000AA2D6A /* Item.xcdatamodel */;
-			path = Item.xcdatamodeld;
+			currentVersion = FDDB12971E4E1CF000AA2D6A /* ShoppingList.xcdatamodel */;
+			path = ShoppingList.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

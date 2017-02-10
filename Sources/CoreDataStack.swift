@@ -15,7 +15,7 @@ enum CoreDataStack {
         
         
         // setting the container to the name of the app
-        let container = NSPersistentContainer(name: "Item")
+        let container = NSPersistentContainer(name: "ShoppingList")
         //loads container with the description and if nothing is found then it throws an error
         container.loadPersistentStores() { (storeDescription, error) in
             if let error = error as NSError? {
